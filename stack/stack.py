@@ -13,63 +13,26 @@ return elements in Last In First Out order.
             track of the index of the last item and  use that to edit it. With
             a linked list, you simply pull the last piece of the end.
 """
-class Node:
-    def __init__(self, value=None, next_node=None):
-        self.value = value
-        self.next_node = next_node
-
-    def get_value(self):
-        return self.value
-    
-    def get_next(self):
-        return self.next_node
-
-    def set_next(self, new_next):
-        self.next_node = new_next
+from singly_linked_list import LinkedList
 
 class Stack:
     def __init__(self):
-        self.head = None
-        self.tail = None
+        self.size = 0
+        self.storage = LinkedList()
 
     def __len__(self):
-        if self.head == None:
-            return 0
-        else:
-            value = self.head
-            count = 0
-            while(value):
-                count += 1
-                value = value.get_next()
-            return count
+        return self.size
         
 
     def push(self, value):
-        new_node = Node(value, None)
-        if not self.head:
-            self.head = new_node
-            self.tail = new_node
-        else:
-            self.tail.set_next(new_node)
-            self.tail = new_node
+        self.size = self.size + 1
+        self.storage.add_to_tail(value)
 
     def pop(self):
-        if not self.head:
+        if self.size == 0:
             return None
-
-        if self.head is self.tail:
-            value = self.head.get_value()
-            self.head = None
-            self.tail = None
+        else:
+            self.size = self.size - 1
+            value = self.storage.remove_tail()
             return value
-
-        current = self.head
-
-        while current.get_next() is not self.tail:
-            current = current.get_next()
-
-        value = self.tail.get_value()
-        self.tail = current
-        self.tail.next_node = None
-        return value
     
