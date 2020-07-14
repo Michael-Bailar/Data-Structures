@@ -50,36 +50,51 @@ class DoublyLinkedList:
     Returns the value of the removed Node.
     """
     def remove_from_head(self):
-        pass
         # store the value of the head
+        old_head = self.head
         # decrement the length of the DLL
+        self.length = self.length - 1
         # delete the head
-            # if head.next is not None
-                # set head.next's prev to None
-                # set head to head.next
-            # else (if head.next is None)
-                # set head to None
-                # set tail to None
+        
+        # if head.next is not None
+        if self.head.next:
+            # set head.next's prev to None
+            self.head.prev = None
+            # set head to head.next
+            self.head = old_head.next
+        # else (if head.next is None)
+        else:
+            # set head to None
+            self.head = None
+            # set tail to None
+            self.tail = None
 
         # return the value
-            
+        return self.tail
     """
     Wraps the given value in a ListNode and inserts it 
     as the new tail of the list. Don't forget to handle 
     the old tail node's next pointer accordingly.
     """
     def add_to_tail(self, value):
-        pass
         # create instance of ListNode with value
+        current = ListNode(value)
         # increment the DLL length attribute
-
+        self.length = self.length + 1
         # if DLL is empty
+        if self.length == 1:
             # set head and tail to the new node instance
-        
+            self.head = current
+            self.tail = current
         # if DLL is not empty
+        if self.length > 1:
             # set new node's prev to current tail
+            current.prev = self.tail
             # set tail's next to new node
+            self.next = current
             # set tail to the new node
+            self.tail = current
+
             
             
     """
