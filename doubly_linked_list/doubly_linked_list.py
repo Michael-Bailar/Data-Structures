@@ -80,7 +80,7 @@ class DoublyLinkedList:
             self.tail = None
 
         # return the value
-        return self.tail
+        return old_head.value
     """
     Wraps the given value in a ListNode and inserts it 
     as the new tail of the list. Don't forget to handle 
