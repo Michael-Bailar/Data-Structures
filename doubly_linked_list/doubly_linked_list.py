@@ -7,6 +7,16 @@ class ListNode:
         self.prev = prev
         self.value = value
         self.next = next
+
+    def delete(self):
+        old_self = self
+        if self.prev:
+            self.prev = None
+        if self.value:
+            self.value = None
+        if self.next:
+            self.next = None
+        return old_self.value
             
 """
 Our doubly-linked list class. It holds references to 
@@ -103,25 +113,35 @@ class DoublyLinkedList:
     Returns the value of the removed Node.
     """
     def remove_from_tail(self):
-        pass
         # store the value of the tail
+        old_tail = self.tail
         # decrement the length of the DLL
+        self.length = self.length - 1
         # delete the tail
-            # if tail.prev is not None
-                # set tail.prev's next to None
-                # set tail to tail.prev
-            # else (if tail.prev is None)
-                # set head to None
-                # set tail to None
+        # if tail.prev is not None
+        if self.tail.prev:
+            # set tail.prev's next to None
+            self.tail.prev = None
+            # set tail to tail.prev
+            self.tail = self.tail.prev
+        # else (if tail.prev is None)
+        else:
+            # set head to None
+            self.head = None
+            # set tail to None
+            self.tail = None
 
         # return the value
-            
+        return old_tail.value
     """
     Removes the input node from its current spot in the 
     List and inserts it as the new head node of the List.
     """
     def move_to_front(self, node):
-        pass
+        node.next = self.head
+        self.head = node
+        node.prev = None
+
         
     """
     Removes the input node from its current spot in the 
