@@ -31,11 +31,20 @@ class BSTNode:
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
-        pass
+        if self.value == target:
+            return self
+        elif target > self.value and self.right:
+            return self.right.contains(target)
+        elif target < self.value and self.left:
+            return self.left.contains(target)
+        
 
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        print("self: ", self)
+        
+
+
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
